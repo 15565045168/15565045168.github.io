@@ -1,0 +1,173 @@
+	*{
+  					margin:0;
+  					padding:0;
+  				}
+  				li{
+  					list-style:none;
+  				}
+  				header{
+  					width:1350px;
+  					height:40px;
+  					border-bottom: 1px solid #C8CBCC;
+  				}
+  				header ul li{
+  					float:left;
+  					line-height:40px;
+  					font-size:15px;   
+  				}
+  				header ul li span{
+  					padding-right:13px;
+  				}
+  				header ul li:nth-child(1){
+  					padding-left:300px;
+  				}
+  				header ul li:nth-child(2){
+  					padding-left:150px;
+  				}
+  				header ul li:nth-child(3){
+  					padding-left:150px;
+  				}
+  				.caidan {
+  					width:1350px;
+  					height: 60px;
+  				}
+  				.caidan ul li{
+  					line-height: 60px;
+  					float:left;
+  					padding-left:35px;
+  					font-size:12px;
+  				}
+  				.caidan ul li:hover{
+  					font-size:17px;
+  					font-weight: 800;
+  					
+  				}
+  				.caidan ul li:nth-child(1){
+  					padding-right:20px;
+  					margin-left:185px;
+  					font-size:17px;
+  					font-weight:800;
+  				}
+  				.swiper-container{
+  					width:1350px;
+  					height:445px;
+  				}
+  				.swiper-container .swiper-wrapper .swiper-slide img{
+  					width:1350px;
+  					height:445px;
+  				}
+  				.shoe {
+  					width:1200px;
+  					height:410px;
+  					margin:auto;
+  				}
+  				.shoe ul li{
+  					box-sizing: border-box; 
+  					width:290px;
+  					height:410px;
+  					margin-top:50px;
+  					float:left;
+  					margin-right:10px;
+  				}
+  				.shoe ul li:hover{
+  					border:1px solid #464646;
+  				}
+  				.shoe ul li img{
+  					width:290px;
+  					height:330px;
+  				}
+  				.shoe ul li p{
+  					font-size:17px;
+  					font-weight: 800;
+  				}
+  				.shoe ul li a{
+  					line-height: 50px;
+  				     color:#464646;
+  				     font-size:15px;
+  				}
+  				.zhanshi{
+  					height:877px;
+  					width:1180px;
+  					margin:auto;
+  				}
+  				.zhanshi ul{
+  					margin-top:35px;
+  					margin-bottom:35px;
+  				}
+  				.zhanshi ul li{
+  					margin-right:10px;
+  					width:575px;
+  					box-sizing: border-box;
+  					height:420px;
+  					float:left;
+  					margin-top:37px;
+  				}
+  				.zhanshi ul li:hover{
+  					border:1px solid #464646;
+  				}
+  				.zhanshi ul li img{
+  					width:575px;
+  					height:320px;
+  				}
+  				.zhanshi ul li p{
+  					font-size:25px;
+  					font-weight:800;
+  					line-height: 32px;
+  				}
+  				.zhanshi ul li a{
+  					line-height:65px;
+  					font-size:16px;
+  					color:#000000;
+  				}
+  				.wenzi{
+  					width:1350px;
+  					height:60px;
+  					overflow: hidden;
+  				}
+  				.wenzi span{
+  					line-height:60px;
+  					padding-left:75px;
+  					display: block;
+  				}
+  				.swiper-container {
+							width: 1200px;
+							height: 390px;
+							margin: auto;
+						}
+						.swiper-container .swiper-wrapper .swiper-slide ul li{
+							float:left;
+						margin-right:10px;
+							width:290px;
+							height:390px;
+							box-sizing: border-box;
+						}
+						.swiper-container .swiper-wrapper .swiper-slide ul li img{
+							width:290px;
+							height:290px;
+						}
+						.swiper-container .swiper-wrapper .swiper-slide ul li p{
+							line-height: 20px;
+							font-size:10px;
+						}
+						.swiper-container .swiper-wrapper .swiper-slide ul li span{
+							line-height:50px;
+							font-size:10px;
+							color:#c53622;
+						}
+						.swiper-container .swiper-wrapper .swiper-slide ul li span s{
+							color:#98989a;
+						}
+						.flood{
+							width:1350px;
+							background:#000000;
+							height:80px;
+						}
+						
+						
+  				
+  				
+  				
+  				
+  				
+  				
+  				

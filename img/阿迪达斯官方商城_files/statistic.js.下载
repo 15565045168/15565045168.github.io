@@ -1,0 +1,974 @@
+(function (window) {
+    window.ccVideoTag = null;
+    window.AjaxUtil = {
+        heartId: null,
+        dataPack: {
+            upid: window.upid,
+            userid: null,
+            videoid: null,
+            time: 0,
+            stage: 0,
+            random: 0,
+            id: 0,
+            uvid: null
+        },
+        //判断是否是pc
+        isPC: function() {
+            if(!(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i).test(navigator.userAgent)) {
+                return true;
+            }
+        },
+        initDataPack: function () {
+            dataPack = this.dataPack;
+            var guid = "";
+            for (var i = 1; i <= 32; i++) {
+                var n = Math.floor(Math.random() * 16.0).toString(16);
+                guid += n;
+                if ((i == 8) || (i == 12) || (i == 16) || (i == 20))
+                    guid += "-";
+            }
+        },
+        freshDataPack: function () {
+            this.dataPack.time = new Date().getTime();
+        },
+        randomData: function () {
+            this.dataPack.random = Math.floor(Math.random() * Math.pow(10, 7));
+        },
+        idData: function () {
+            var d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            this.dataPack.id = ( h * 3600 + m * 60 + s ).toString(36) + "_" + Math.round(Math.random() * 999999).toString(36);
+
+        },
+        getUvid: function () {
+            var uniqueVisitorId;
+            var co = AjaxUtil.getCookie('uniqueVisitorId');
+            if (co != null) {
+                uniqueVisitorId = AjaxUtil.getCookie('uniqueVisitorId');
+            } else {
+                uniqueVisitorId = guidGenerator();
+                AjaxUtil.setCookie('uniqueVisitorId', uniqueVisitorId);
+            }
+
+            function guidGenerator() {
+                var S4 = function () {
+                    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+                };
+                return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+            }
+
+            this.dataPack.uvid = (hex_sha1(uniqueVisitorId)).toUpperCase();
+        },
+        parseJsonToParams: function (obj) {
+            var propArray = [];
+            for (var prop in obj) {
+                var str = prop + "=" + obj[prop];
+                propArray.push(str);
+            }
+            return propArray.join("&");
+        },
+        heartSend: function () {
+            if (!this.heartId) {
+                this.heartId = setInterval(function () {
+                    AjaxUtil.send(
+                        {
+                            stage: 77,
+                            upid: AjaxUtil.dataPack.upid,
+                            userid: AjaxUtil.dataPack.userid,
+                            videoid: AjaxUtil.dataPack.videoid,
+                            play_position: Math.floor(videoData.currentTime * 1000),
+                            video_duration: Math.floor(videoData.duration * 1000),
+                            time: AjaxUtil.dataPack.time,
+                            random: AjaxUtil.dataPack.random,
+                            terminal_type: AjaxUtil.isPC() ? 40 : 30
+                        }
+                    );
+                }, 10000);
+            }
+        },
+        heartStop: function () {
+            clearInterval(AjaxUtil.heartId);
+            AjaxUtil.heartId = null;
+        },
+        getXHR: function () {
+            var xhr;
+            if (window.ActiveXObject) {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            } else {
+                xhr = new XMLHttpRequest();
+            }
+            return xhr;
+        },
+        setCookie: function(n, v, t){
+            var exp = new Date();
+            exp.setTime(exp.getTime() + (t || 24) * 60 * 60 * 1000 * 365);
+            document.cookie = n + "=" + escape(v) + ";expires=" + exp.toGMTString() + ';path=/';
+        },
+        getCookie: function(n){
+            var arr = document.cookie.match(new RegExp("(^| )" + n + "=([^;]*)(;|$)"));
+            if (arr != null) {
+                return unescape(arr[2]);
+            }
+            return null;
+        },
+        send: function(externParam){
+            AjaxUtil.idData();
+            AjaxUtil.freshDataPack();
+            AjaxUtil.randomData();
+            var paramStr = '';
+            if (externParam) {
+                var s = AjaxUtil.parseJsonToParams(externParam) + '&' + paramStr;
+                sParamStr = s.substring(0, s.length - 1);
+            }
+            var head = document.getElementsByTagName("head")[0] || document.documentElement;
+            var script = document.createElement("script");
+            script.src = "https://m-flare.bokecc.com/flash/playlog?" + sParamStr;
+            //测试环境 
+            // script.src = "https://flare1.bokecc.com/flash/playlog?" + sParamStr;
+            head.insertBefore( script, head.firstChild );
+            script.onload = script.onreadystatechange = function(){
+                if (!this.readyState || /loaded|complete/.test( script.readyState )) {
+                    script.onload = script.onreadystatechange = null;
+                    if ( head && script.parentNode ) {
+                        head.removeChild( script );
+                    }
+                }
+            };
+        },
+        sendClick: function(url, externParam){
+            AjaxUtil.idData();
+            AjaxUtil.freshDataPack();
+            AjaxUtil.randomData();
+            var paramStr = '';
+            if (externParam) {
+                var s = AjaxUtil.parseJsonToParams(externParam) + '&' + paramStr;
+                sParamStr = s.substring(0, s.length - 1);
+            }
+            var head = document.getElementsByTagName("head")[0] || document.documentElement;
+            var script = document.createElement("script");
+            script.src = url + sParamStr;
+            head.insertBefore( script, head.firstChild );
+            script.onload = script.onreadystatechange = function(){
+                if (!this.readyState || /loaded|complete/.test( script.readyState )) {
+                    script.onload = script.onreadystatechange = null;
+                    if ( head && script.parentNode ) {
+                        head.removeChild( script );
+                    }
+                }
+            };
+        }
+    };
+    window.videoData = {
+        load_start_point: 0,
+        load_end_point: 0,
+        isSeeked: false,
+        bufferedArray: [],
+        isEnded: false,
+        isPlayError: false,
+        playBtnClicked: false,
+        buffered: false,
+        isBuffering: false,
+        isPlaying: false,
+        isSeeking: false,
+        userPause: false,
+        duration: 0, //视频总长
+        currentTime: 0, //拖拽前的时间点
+        seekingTime: 0, //拖拽后的时间点
+        isStart: false, //是否开始播放了
+        t1: new Date().getTime(),
+        watingNum: 1,
+        canplayNum: 1,
+        isDraging: false,
+        isDraging2: false,
+        isChangeQuality: false,
+        isChangeQuality2: false,
+        isResume: false,
+        isEnded2: false,
+        isCanplay: false
+    };
+    var VideoMonitor = window.VideoMonitor = function (config) {
+        this.config = config;
+        AjaxUtil.dataPack.userid = this.config.uid;
+        AjaxUtil.dataPack.videoid = this.config.vid;
+    };
+
+    VideoMonitor.prototype = {
+        constructor: VideoMonitor,
+        smartBuffer: function () {
+            setInterval(function () {
+                if (videoData.isSeeked == false && videoData.userPause == false && videoData.isSeeking == false && videoData.isPlaying == true && videoData.currentTime == ccVideoTag.currentTime) {
+                    videoData.isPlaying = false;
+                }
+            }, 300);
+        },
+        start: function () {
+            window.vm = this;
+            var video = document.getElementById(this.config.video);
+            var events = ['canplay', 'loadstart', 'progress', 'durationchange', 'waiting', 'play', 'pause', 'seeking', 'seeked', 'ended', 'error', 'stalled', 'loadedmetadata', 'timeupdate', 'playing', 'suspend', 'canplaythrough'];
+            for (var idx in events) {
+                var type = events[idx];
+                video.addEventListener(type, this[type], false);
+            }
+            ccVideoTag = video;
+            AjaxUtil.initDataPack();
+            AjaxUtil.getUvid();
+        },
+        isInBuffered: function () {
+            var arr = videoData.bufferedArray;
+            var currentTime;
+            for (var idx in arr) {
+                var bufferObj = arr[idx];
+                currentTime = ccVideoTag.currentTime;
+                if (currentTime > bufferObj.start && currentTime < (bufferObj.end - 10)) {
+                    return false;
+                }
+            }
+            return true;
+        },
+        canplay: function (event) {
+            videoData.canplayNum++;
+            if(videoData.canplayNum > 2){
+                videoData.isCanplay = true;
+                if(videoData.isDraging == true){
+                    return;
+                }
+                if(videoData.isChangeQuality == true){
+                    return;
+                }
+                AjaxUtil.send(
+                        {
+                            stage: 33,
+                            upid: AjaxUtil.dataPack.upid,
+                            userid: AjaxUtil.dataPack.userid,
+                            videoid: AjaxUtil.dataPack.videoid,
+                            play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                            play_position: Math.floor(event.target.currentTime * 1000),
+                            load_start_point: videoData.load_start_point,
+                            load_end_point: videoData.load_end_point,
+                            buffered_size: -1,
+                            buffered_time: videoData.load_end_point,
+                            time: AjaxUtil.dataPack.time,
+                            random: AjaxUtil.dataPack.random,
+                            terminal_type: AjaxUtil.isPC() ? 40 : 30
+                        }
+                );
+            }
+            videoData.isDraging = false;
+            videoData.isChangeQuality = false;
+        },
+        play: function (event) {
+
+            if (videoData.playBtnClicked == false) {
+                //发送播放事件
+                videoData.playBtnClicked = true;
+
+            } else {
+                if(videoData.isEnded == false && videoData.isChangeQuality2 == false){
+                    videoData.isResume = true;
+                    AjaxUtil.send(
+                            {
+                                stage: 33,
+                                upid: AjaxUtil.dataPack.upid,
+                                userid: AjaxUtil.dataPack.userid,
+                                videoid: AjaxUtil.dataPack.videoid,
+                                play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                                play_position: Math.floor(event.target.currentTime * 1000),
+                                load_start_point: videoData.load_start_point,
+                                load_end_point: videoData.load_end_point,
+                                buffered_size: -1,
+                                buffered_time: videoData.load_end_point,
+                                time: AjaxUtil.dataPack.time,
+                                random: AjaxUtil.dataPack.random,
+                                terminal_type: AjaxUtil.isPC() ? 40 : 30
+                            }
+                    );
+                    AjaxUtil.send(
+                            {
+                                stage: 35,
+                                upid: AjaxUtil.dataPack.upid,
+                                userid: AjaxUtil.dataPack.userid,
+                                videoid: AjaxUtil.dataPack.videoid,
+                                type: 1,
+                                time: AjaxUtil.dataPack.time,
+                                random: AjaxUtil.dataPack.random,
+                                terminal_type: AjaxUtil.isPC() ? 40 : 30
+                            }
+                    );
+                    AjaxUtil.sendClick('https://m-click.bokecc.com/flash/playaction?', {
+                        uid: AjaxUtil.dataPack.userid,
+                        vid: AjaxUtil.dataPack.videoid,
+                        //action: 'replay',
+                        data: AjaxUtil.dataPack.time,
+                        random: AjaxUtil.dataPack.random,
+                        terminal_type: 30
+                    });
+                }
+                videoData.isEnded = false;
+                videoData.isChangeQuality2 = false;
+            }
+
+            videoData.userPause = false;
+        },
+        pause: function (event) {
+            videoData.userPause = true;
+            if (event.target.currentTime != videoData.duration) {
+                AjaxUtil.send({
+                    stage: 35,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    type: 0,
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+                AjaxUtil.sendClick('https://m-click.bokecc.com/flash/playaction?', {
+                    uid: AjaxUtil.dataPack.userid,
+                    vid: AjaxUtil.dataPack.videoid,
+                    action: 'pause',
+                    data: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: 30
+                });
+            }
+        },
+        seeking: function (event) {
+            videoData.isSeeked = true;
+            videoData.isSeeking = true;
+            videoData.isDraging = true;
+        },
+        seeked: function (event) {
+            videoData.isDraging = true;
+            if(videoData.isEnded2 == true){
+                videoData.isDraging2 = false;
+            } else {
+                videoData.isDraging2 = true;
+            }
+            if(videoData.isEnded == false && videoData.isChangeQuality == false){
+                AjaxUtil.send({
+                    stage: 36,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    start_position: Math.floor(videoData.currentTime * 1000),
+                    end_position: Math.floor(event.currentTarget.currentTime * 1000),
+                    load_start_point: videoData.load_start_point,
+                    load_end_point: videoData.load_end_point,
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+
+                var action;
+                if(vm.isInBuffered()){
+                    action = 'unbuffereddrag';
+                } else {
+                    action = 'buffereddrag';
+                }
+
+                AjaxUtil.sendClick('https://m-click.bokecc.com/flash/playaction?', {
+                    uid: AjaxUtil.dataPack.userid,
+                    vid: AjaxUtil.dataPack.videoid,
+                    action: action,
+                    data: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: 30
+                });
+            }
+
+            videoData.isSeeking = false;
+            videoData.isChangeQuality = false;
+            videoData.isEnded2 = false;
+        },
+        loadstart: function (event) {
+            //console.log("播放器开始查找视频");
+        },
+        progress: function (event) {
+            //记录缓冲区段
+            videoData.bufferedArray = [];
+            var len = ccVideoTag.buffered.length;
+            for (var i = 0; i < len; i++) {
+                var bufferObj = {
+                    start: 0,
+                    end: 0
+                };
+                bufferObj.start = ccVideoTag.buffered.start(i);
+                bufferObj.end = ccVideoTag.buffered.end(i);
+                videoData.bufferedArray.push(bufferObj);
+            }
+            if (len > 0) {
+                if(typeof(ccVideoTag.buffered.start(len - 1)) == "undefined" || typeof(ccVideoTag.buffered.end(len - 1)) == "undefined"){
+                    videoData.load_start_point = 0;
+                    videoData.load_end_point = 0;
+                } else {
+                    videoData.load_start_point = Math.floor(ccVideoTag.buffered.start(len - 1) * 1000);
+                    videoData.load_end_point = Math.floor(ccVideoTag.buffered.end(len - 1) * 1000);
+                }
+            }
+            //console.log(ccVideoTag.buffered.start(len - 1) + "-" + ccVideoTag.buffered.end(len - 1) + "s");
+        },
+        waiting: function (event) {
+            //当视频由于需要缓冲下一帧而停止
+            if (videoData.isStart == false) {
+            } else {
+                if(videoData.isDraging == true){
+                    return;
+                }
+                if(videoData.isChangeQuality == true){
+                    return;
+                }
+                videoData.watingNum++;
+                AjaxUtil.send({
+                    stage: 32,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                    play_position: Math.floor(event.target.currentTime * 1000),
+                    load_start_point: videoData.load_start_point,
+                    load_end_point: videoData.load_end_point,
+                    buffer_left: Math.floor(videoData.duration * 1000 - videoData.load_end_point),
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+                if(videoData.watingNum == 2){
+                    AjaxUtil.sendClick('https://m-click.bokecc.com/playlog.php?', {
+                        id: encodeURIComponent(AjaxUtil.dataPack.id),
+                        VIP: 2,
+                        action: 1,
+                        flvURL: encodeURIComponent(event.target.src.split('?')[0]),
+                        bufferPercent: videoData.load_end_point / 10000,
+                        userID: AjaxUtil.dataPack.userid,
+                        videoID: AjaxUtil.dataPack.videoid,
+                        status: 2,
+                        data: AjaxUtil.dataPack.time,
+                        random: AjaxUtil.dataPack.random,
+                        terminal_type: 30
+                    });
+                }
+                if(videoData.watingNum == 4){
+                    AjaxUtil.sendClick('https://m-click.bokecc.com/playlog.php?', {
+                        id: encodeURIComponent(AjaxUtil.dataPack.id),
+                        VIP: 2,
+                        action: 3,
+                        flvURL: encodeURIComponent(event.target.src.split('?')[0]),
+                        bufferPercent: videoData.load_end_point / 10000,
+                        userID: AjaxUtil.dataPack.userid,
+                        videoID: AjaxUtil.dataPack.videoid,
+                        status: 2,
+                        data: AjaxUtil.dataPack.time,
+                        random: AjaxUtil.dataPack.random,
+                        terminal_type: 30
+                    });
+                }
+
+            }
+            videoData.isDraging = false;
+            videoData.isChangeQuality = false;
+        },
+        ended: function (event) {
+            videoData.isEnded = true;
+            videoData.isDraging2 = false;
+            videoData.isResume = false;
+            videoData.isEnded2 = true;
+            AjaxUtil.send({
+                stage: 40,
+                upid: AjaxUtil.dataPack.upid,
+                userid: AjaxUtil.dataPack.userid,
+                videoid: AjaxUtil.dataPack.videoid,
+                play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                play_position: Math.floor(event.target.currentTime * 1000),
+                load_start_point: videoData.load_start_point,
+                load_end_point: videoData.load_end_point,
+                video_duration: Math.floor(videoData.duration * 1000),
+                retry: 0,
+                time: AjaxUtil.dataPack.time,
+                random: AjaxUtil.dataPack.random,
+                terminal_type: AjaxUtil.isPC() ? 40 : 30
+            });
+            AjaxUtil.sendClick('https://m-click.bokecc.com/flash/playaction?', {
+                uid: AjaxUtil.dataPack.userid,
+                vid: AjaxUtil.dataPack.videoid,
+                action: 'finish',
+                data: AjaxUtil.dataPack.time,
+                random: AjaxUtil.dataPack.random,
+                terminal_type: 30
+            });
+            AjaxUtil.heartStop();
+
+        },
+        stalled: function () {
+            //当浏览器尝试获取媒体数据，但数据不可用时
+            var t2 = new Date().getTime();
+            var reason;
+            switch (window.videoStatus) {
+                case 0:
+                    reason = 115;
+                    break;
+                case 2:
+                    reason = 113;
+                    break;
+                case 4:
+                    reason = 116;
+                    break;
+                case 5:
+                    reason = 207;
+                    break;
+            }
+        },
+        durationchange: function (event) {
+            //视频元数据获取成功
+        },
+        timeupdate: function (event) {
+            if (videoData.isPlaying == false) {
+            }
+            videoData.isPlaying = true;
+            videoData.currentTime = event.currentTarget.currentTime;
+        },
+        playing: function (event) {
+            videoData.duration = event.currentTarget.duration;
+            videoData.isPlaying = true;
+            videoData.userPause = false;
+            //当音频/视频在已因缓冲而暂停或停止后已就绪时
+            if(typeof window.get_custom_id === 'function' ){
+                var customId = encodeURIComponent(get_custom_id());
+            } else {
+                var customId = '';
+            }
+            if (videoData.isStart == false) {
+                vm.smartBuffer();
+                var t2 = new Date().getTime();
+                videoData.isStart = true;
+                AjaxUtil.send({
+                    stage: 31,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                    play_position: Math.floor(event.target.currentTime * 1000),
+                    load_start_point: videoData.load_start_point,
+                    load_end_point: videoData.load_end_point,
+                    pre_adduration: 0,
+                    group_test_count: 1,
+                    total_test_time: 1,
+                    video_duration: Math.floor(videoData.duration * 1000),
+                    video_size: -1,
+                    page_url: encodeURIComponent(window.location.href),
+                    uvid: AjaxUtil.dataPack.uvid,
+                    ready_time: Math.floor(t2 - videoData.t1),
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30,
+                    custom_id: customId
+                });
+                AjaxUtil.sendClick('https://m-click.bokecc.com/playlog.php?', {
+                    id: encodeURIComponent(AjaxUtil.dataPack.id),
+                    VIP: 2,
+                    action: 0,
+                    flvURL: encodeURIComponent(event.target.src.split('?')[0]),
+                    bufferPercent: videoData.load_end_point / 10000,
+                    userID: AjaxUtil.dataPack.userid,
+                    videoID: AjaxUtil.dataPack.videoid,
+                    status: 2,
+                    data: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: 30
+                });
+            }
+            if(videoData.isResume == false && videoData.isDraging2 == false && videoData.isCanplay == false){
+                AjaxUtil.send({
+                    stage: 77,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    play_position: Math.floor(videoData.currentTime * 1000),
+                    video_duration: Math.floor(videoData.duration * 1000),
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+            }
+            videoData.isResume = false;
+            videoData.isDraging2 = false;
+            videoData.isCanplay = false;
+            AjaxUtil.heartSend();
+        },
+        canplaythrough: function (event) {
+
+        },
+        suspend: function (event) {
+        },
+        error: function (e) {
+            AjaxUtil.heartStop();
+            isPlayError = true;
+            var isLoadFailed = false;
+            var reason;
+            switch (e.target.error.code) {
+                case e.target.error.MEDIA_ERR_ABORTED:
+                    reason = '客户端主动终止视频加载';
+                    break;
+                case e.target.error.MEDIA_ERR_NETWORK:
+                    reason = '播放过程中视频加载失败';
+                    break;
+                case e.target.error.MEDIA_ERR_DECODE:
+                    reason = '解码错误';
+                    break;
+                case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                    stage = 34;
+                    reason = '服务器端视频资源不存在';
+                    isLoadFailed = true;
+                    break;
+                default:
+                    reason = '未知错误';
+                    break;
+            }
+            if (isLoadFailed) {
+                AjaxUtil.send({
+                    stage: 34,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                    play_position: Math.floor(event.target.currentTime * 1000),
+                    load_start_point: 0,
+                    load_end_point: 0,
+                    status: 1,
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+                AjaxUtil.sendClick('https://m-click.bokecc.com/playlog.php?', {
+                    id: encodeURIComponent(AjaxUtil.dataPack.id),
+                    VIP: 2,
+                    action: 2,
+                    flvURL: encodeURIComponent(event.target.src.split('?')[0]),
+                    bufferPercent: videoData.load_end_point / 10000,
+                    userID: AjaxUtil.dataPack.userid,
+                    videoID: AjaxUtil.dataPack.videoid,
+                    status: 2,
+                    data: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: 30
+                });
+            } else {
+                AjaxUtil.send({
+                    stage: 34,
+                    upid: AjaxUtil.dataPack.upid,
+                    userid: AjaxUtil.dataPack.userid,
+                    videoid: AjaxUtil.dataPack.videoid,
+                    play_url: encodeURIComponent(event.target.src.split('?')[0]),
+                    play_position: Math.floor(event.target.currentTime * 1000),
+                    load_start_point: videoData.load_start_point,
+                    load_end_point: videoData.load_end_point,
+                    status: 2,
+                    time: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: AjaxUtil.isPC() ? 40 : 30
+                });
+                AjaxUtil.sendClick('https://m-click.bokecc.com/playlog.php?', {
+                    id: encodeURIComponent(AjaxUtil.dataPack.id),
+                    VIP: 2,
+                    action: 2,
+                    flvURL: encodeURIComponent(event.target.src.split('?')[0]),
+                    bufferPercent: videoData.load_end_point / 10000,
+                    userID: AjaxUtil.dataPack.userid,
+                    videoID: AjaxUtil.dataPack.videoid,
+                    status: 2,
+                    data: AjaxUtil.dataPack.time,
+                    random: AjaxUtil.dataPack.random,
+                    terminal_type: 30
+                });
+            }
+
+        }
+    };
+
+
+    window.changeQuality = function(u1, u2){
+        AjaxUtil.send({
+            stage: 37,
+            upid: AjaxUtil.dataPack.upid,
+            userid: AjaxUtil.dataPack.userid,
+            videoid: AjaxUtil.dataPack.videoid,
+            source_url: encodeURIComponent(u1.split('?')[0]),
+            destination_url: encodeURIComponent(u2.split('?')[0]),
+            time: AjaxUtil.dataPack.time,
+            random: AjaxUtil.dataPack.random,
+            terminal_type: AjaxUtil.isPC() ? 40 : 30
+        });
+        videoData.isChangeQuality = true;
+        videoData.isChangeQuality2 = true;
+    };
+
+    window.changeSpeed = function(s1, s2, url){
+        AjaxUtil.send({
+            stage: 38,
+            upid: AjaxUtil.dataPack.upid,
+            userid: AjaxUtil.dataPack.userid,
+            videoid: AjaxUtil.dataPack.videoid,
+            play_url: encodeURIComponent(url.split('?')[0]),
+            source_speed: s1,
+            target_speed: s2,
+            time: AjaxUtil.dataPack.time,
+            random: AjaxUtil.dataPack.random,
+            terminal_type: AjaxUtil.isPC() ? 40 : 30
+        });
+    };
+
+    window.readyComplete = function(){
+        AjaxUtil.freshDataPack();
+        AjaxUtil.randomData();
+        var t2 = new Date().getTime();
+        //请求播放接口完成
+        AjaxUtil.send({
+            stage: 10,
+            upid: AjaxUtil.dataPack.upid,
+            userid: AjaxUtil.dataPack.userid,
+            videoid: AjaxUtil.dataPack.videoid,
+            status: 1,
+            pl_time: 1,
+            pi_time: playApiTime,
+            uvid: AjaxUtil.dataPack.uvid,
+            ready_time: Math.floor(t2 - videoData.t1),
+            time: AjaxUtil.dataPack.time,
+            random: AjaxUtil.dataPack.random,
+            terminal_type: AjaxUtil.isPC() ? 40 : 30
+        });
+    };
+
+
+    var oReplay = document.getElementById('replaybtn');
+    var num = 0;
+        if ( oReplay !== null ) {
+            oReplay.onclick = function(){
+                num++;
+                if(num > 1){
+                    AjaxUtil.sendClick('https://m-click.bokecc.com/flash/playaction?', {
+                        uid: AjaxUtil.dataPack.userid,
+                        vid: AjaxUtil.dataPack.videoid,
+                        action: 'replay',
+                        data: AjaxUtil.dataPack.time,
+                        random: AjaxUtil.dataPack.random,
+                        terminal_type: 30
+                    });
+                    AjaxUtil.send({
+                        stage: 77,
+                        upid: AjaxUtil.dataPack.upid,
+                        userid: AjaxUtil.dataPack.userid,
+                        videoid: AjaxUtil.dataPack.videoid,
+                        play_position: Math.floor(videoData.currentTime * 1000),
+                        video_duration: Math.floor(videoData.duration * 1000),
+                        time: AjaxUtil.dataPack.time,
+                        random: AjaxUtil.dataPack.random,
+                        terminal_type: AjaxUtil.isPC() ? 40 : 30
+                    });
+                }
+
+        }
+    }
+
+
+})(window);
+
+
+
+/*
+ *   A   JavaScript   implementation   of   the   Secure   Hash   Algorithm,   SHA-1,   as   defined
+ *   in   FIPS   PUB   180-1
+ *   Version   2.1-BETA   Copyright   Paul   Johnston   2000   -   2002.
+ *   Other   contributors:   Greg   Holt,   Andrew   Kepert,   Ydnar,   Lostinet
+ *   Distributed   under   the   BSD   License
+ *   See   http://pajhome.org.uk/crypt/md5   for   details.
+ */
+/*
+ *   Configurable   variables.   You   may   need   to   tweak   these   to   be   compatible   with
+ *   the   server-side,   but   the   defaults   work   in   most   cases.
+ */
+var hexcase = 0; /*   hex   output   format.   0   -   lowercase;   1   -   uppercase                 */
+var b64pad = ""; /*   base-64   pad   character.   "="   for   strict   RFC   compliance       */
+var chrsz = 8; /*   bits   per   input   character.   8   -   ASCII;   16   -   Unicode             */
+
+/*
+ *   These   are   the   functions   you'll   usually   want   to   call
+ *   They   take   string   arguments   and   return   either   hex   or   base-64   encoded   strings
+ */
+function hex_sha1(s) {
+    return binb2hex(core_sha1(str2binb(s), s.length * chrsz));
+}
+
+function b64_sha1(s) {
+    return binb2b64(core_sha1(str2binb(s), s.length * chrsz));
+}
+
+function str_sha1(s) {
+    return binb2str(core_sha1(str2binb(s), s.length * chrsz));
+}
+
+function hex_hmac_sha1(key, data) {
+    return binb2hex(core_hmac_sha1(key, data));
+}
+
+function b64_hmac_sha1(key, data) {
+    return binb2b64(core_hmac_sha1(key, data));
+}
+
+function str_hmac_sha1(key, data) {
+    return binb2str(core_hmac_sha1(key, data));
+}
+
+/*
+ *   Perform   a   simple   self-test   to   see   if   the   VM   is   working
+ */
+function sha1_vm_test() {
+    return hex_sha1("abc") == "a9993e364706816aba3e25717850c26c9cd0d89d";
+}
+
+/*
+ *   Calculate   the   SHA-1   of   an   array   of   big-endian   words,   and   a   bit   length
+ */
+function core_sha1(x, len) {
+    /*   append   padding   */
+    x[len >> 5] |= 0x80 << (24 - len % 32);
+    x[((len + 64 >> 9) << 4) + 15] = len;
+
+    var w = Array(80);
+    var a = 1732584193;
+    var b = -271733879;
+    var c = -1732584194;
+    var d = 271733878;
+    var e = -1009589776;
+
+    for (var i = 0; i < x.length; i += 16) {
+        var olda = a;
+        var oldb = b;
+        var oldc = c;
+        var oldd = d;
+        var olde = e;
+
+        for (var j = 0; j < 80; j++) {
+            if (j < 16) w[j] = x[i + j];
+            else w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+            var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
+            e = d;
+            d = c;
+            c = rol(b, 30);
+            b = a;
+            a = t;
+        }
+
+        a = safe_add(a, olda);
+        b = safe_add(b, oldb);
+        c = safe_add(c, oldc);
+        d = safe_add(d, oldd);
+        e = safe_add(e, olde);
+    }
+    return Array(a, b, c, d, e);
+
+}
+
+/*
+ *   Perform   the   appropriate   triplet   combination   function   for   the   current
+ *   iteration
+ */
+function sha1_ft(t, b, c, d) {
+    if (t < 20) return (b & c) | ((~b) & d);
+    if (t < 40) return b ^ c ^ d;
+    if (t < 60) return (b & c) | (b & d) | (c & d);
+    return b ^ c ^ d;
+}
+
+/*
+ *   Determine   the   appropriate   additive   constant   for   the   current   iteration
+ */
+function sha1_kt(t) {
+    return (t < 20) ? 1518500249 : (t < 40) ? 1859775393 : (t < 60) ? -1894007588 : -899497514;
+}
+
+/*
+ *   Calculate   the   HMAC-SHA1   of   a   key   and   some   data
+ */
+function core_hmac_sha1(key, data) {
+    var bkey = str2binb(key);
+    if (bkey.length > 16) bkey = core_sha1(bkey, key.length * chrsz);
+
+    var ipad = Array(16),
+        opad = Array(16);
+    for (var i = 0; i < 16; i++) {
+        ipad[i] = bkey[i] ^ 0x36363636;
+        opad[i] = bkey[i] ^ 0x5C5C5C5C;
+    }
+
+    var hash = core_sha1(ipad.concat(str2binb(data)), 512 + data.length * chrsz);
+    return core_sha1(opad.concat(hash), 512 + 160);
+}
+
+/*
+ *   Add   integers,   wrapping   at   2^32.   This   uses   16-bit   operations   internally
+ *   to   work   around   bugs   in   some   JS   interpreters.
+ */
+function safe_add(x, y) {
+    var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+    var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return (msw << 16) | (lsw & 0xFFFF);
+}
+
+/*
+ *   Bitwise   rotate   a   32-bit   number   to   the   left.
+ */
+function rol(num, cnt) {
+    return (num << cnt) | (num >>> (32 - cnt));
+}
+
+/*
+ *   Convert   an   8-bit   or   16-bit   string   to   an   array   of   big-endian   words
+ *   In   8-bit   function,   characters   >255   have   their   hi-byte   silently   ignored.
+ */
+function str2binb(str) {
+    var bin = Array();
+    var mask = (1 << chrsz) - 1;
+    for (var i = 0; i < str.length * chrsz; i += chrsz)
+        bin[i >> 5] |= (str.charCodeAt(i / chrsz) & mask) << (24 - i % 32);
+    return bin;
+}
+
+/*
+ *   Convert   an   array   of   big-endian   words   to   a   string
+ */
+function binb2str(bin) {
+    var str = "";
+    var mask = (1 << chrsz) - 1;
+    for (var i = 0; i < bin.length * 32; i += chrsz)
+        str += String.fromCharCode((bin[i >> 5] >>> (24 - i % 32)) & mask);
+    return str;
+}
+
+/*
+ *   Convert   an   array   of   big-endian   words   to   a   hex   string.
+ */
+function binb2hex(binarray) {
+    var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+    var str = "";
+    for (var i = 0; i < binarray.length * 4; i++) {
+        str += hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8 + 4)) & 0xF) + hex_tab.charAt((binarray[i >> 2] >> ((3 - i % 4) * 8)) & 0xF);
+    }
+    return str;
+}
+
+/*
+ *   Convert   an   array   of   big-endian   words   to   a   base-64   string
+ */
+function binb2b64(binarray) {
+    var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var str = "";
+    for (var i = 0; i < binarray.length * 4; i += 3) {
+        var triplet = (((binarray[i >> 2] >> 8 * (3 - i % 4)) & 0xFF) << 16) | (((binarray[i + 1 >> 2] >> 8 * (3 - (i + 1) % 4)) & 0xFF) << 8) | ((binarray[i + 2 >> 2] >> 8 * (3 - (i + 2) % 4)) & 0xFF);
+        for (var j = 0; j < 4; j++) {
+            if (i * 8 + j * 6 > binarray.length * 32) str += b64pad;
+            else str += tab.charAt((triplet >> 6 * (3 - j)) & 0x3F);
+        }
+    }
+    return str;
+}

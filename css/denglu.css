@@ -1,0 +1,151 @@
+					* {
+						margin: 0;
+						padding: 0;
+					}
+					a{text-decoration: none;}
+					li{list-style:none;}
+					ol li{
+						float:left;
+						width:670px;
+						
+					}
+					.fanhui{
+						width:1350px;
+						height:50px;
+					}
+					.fanhui span{
+						padding-left:10px;
+						font-size:14px;
+						line-height:50px;
+						
+					}
+					.fanhui span:nth-child(1){
+						padding-left:180px;
+					}
+					.fanhui span img{
+						display:inline-block;
+						width:15px;
+						height:15px;
+					}
+					.fanhui .bian{
+						color:#C8CBCC;
+					}
+					.biaodan {
+						box-sizing: border-box;
+						border-bottom:1px dashed #232323;
+						margin-left:180px;
+						width:375px;
+						height:312px;
+					}
+					.biaodan .kuaijie p{
+						font-size:22px;
+						float:left;
+					}
+					.biaodan .kuaijie p:nth-child(1) span{
+						border-bottom:1px solid #000;
+					}
+					.biaodan .kuaijie p:nth-child(2) span{
+						color:#c8cbcc;
+						border-bottom: 1px solid #c8cbcc;
+					}
+					.biaodan .kuaijie input{
+						width:375px;
+						height:40px;
+						margin-top:20px;
+						font-size:12px;
+						color:#C8CBCC;
+					}
+					.biaodan .kuaijie .shou{
+						display: inline-block;
+						width:280px;
+						height:40px;
+						border:1px solid #c8cbcc;
+						font-size:12px;
+						color:#C8CBCC;
+						line-height:40px;
+						margin-top:20px;
+					}
+					.biaodan .kuaijie .huo{
+						background:#000000;
+						color:#FFFFFF;
+						width:93px;
+						height:43px;
+						line-height:40px;
+						display:inline-block;
+					}
+					.biaodan .kuaijie .duigou{
+						width:25px;
+						height:25px;
+						border:2px solid #C8CBCC;
+						margin-top:20px;
+					}
+					.biaodan .kuaijie .phone{
+						height:25px;
+						font-size:10px;
+						padding-left:10px;
+						line-height: 25px;
+						padding-top:20px;
+					}
+					.biaodan  .lu{
+						margin-top:75px;
+						width:375px;
+						height:43px;
+						background: #000000;
+						font-size:20px;
+						line-height:43px;
+						color:#FFFFFF;
+						text-align: center;
+					}
+					.wei{
+						margin-left:180px;
+					}
+					.wei ul li:nth-child(1){
+						font-size:15px;
+						line-height: 50px;
+					}
+					.wei ul li:nth-child(2) img{
+						width:170px;
+						height:44px;
+					}
+					.wei ul li:nth-child(3){
+						font-size:13px;
+						color:#a38a88;
+						line-height:50px;
+					}
+					ol li ul {
+						margin-top:50px;
+						border-left:1px solid #000000;
+					}
+					ol li ul li{
+						box-sizing: border-box;
+					}
+					ol li ul li:nth-child(1){
+						font-size:20px;
+					}
+					ol li ul li:nth-child(2){
+						line-height:80px;
+					}
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					

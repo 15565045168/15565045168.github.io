@@ -1,0 +1,192 @@
+	*{
+  					margin:0;
+  					padding:0;
+  				}
+  				li{
+  					list-style:none;
+  				}
+  				header{
+  					width:1350px;
+  					height:40px;
+  					border-bottom: 1px solid #C8CBCC;
+  				}
+  				header ul li{
+  					float:left;
+  					line-height:40px;
+  					font-size:15px;   
+  				}
+  				header ul li span{
+  					padding-right:13px;
+  				}
+  				header ul li:nth-child(1){
+  					padding-left:300px;
+  				}
+  				header ul li:nth-child(2){
+  					padding-left:150px;
+  				}
+  				header ul li:nth-child(3){
+  					padding-left:150px;
+  				}
+  				.caidan {
+  					width:1350px;
+  					height: 60px;
+  				}
+  				.caidan ul li{
+  					line-height: 60px;
+  					float:left;
+  					padding-left:35px;
+  					font-size:12px;
+  				}
+  				.caidan ul li:hover{
+  					font-size:17px;
+  					font-weight: 800;
+  					
+  				}
+  				.caidan ul li:nth-child(1){
+  					padding-right:20px;
+  					margin-left:185px;
+  					font-size:17px;
+  					font-weight:800;
+  				}
+  				.swiper-container{
+  					width:1350px;
+  					height:425px;
+  				}
+  				.swiper-container .swiper-wrapper .swiper-slide p:first-child{
+  					width:1350px;
+  					height:425px;
+  				}
+  				.swiper-container .swiper-wrapper .swiper-slide ul li{
+  					position:absolute;
+  				}
+  				.swiper-container .swiper-wrapper .swiper-slide ul li:nth-child(2){
+  						width:160px;
+						height:50px;
+						font-size:20px;
+						text-align: center;
+						line-height:50px;
+						margin-left: 500px;;
+						background:#FFFFFF;
+						color:#000000;
+						margin-top:290px;
+  				}
+  				.swiper-container .swiper-wrapper .swiper-slide ul li img{
+  					width:1350px;
+  					height:425px;
+  				}
+  				.year {
+  					width:1200px;
+  					height:440px;
+  					margin:auto;
+  				}
+  				.year ul{
+  					margin-top: 35px;
+  				}
+  				.year ul li{
+  					float:left;
+  				}
+  				.year ul li{
+  					box-sizing: border-box;
+  					width:290px;
+  					height:440px;
+  					margin-right:10px;
+  				}
+  				.year ul li img{
+  					width:290px;
+  					height:335px;
+  				}
+  				.year ul li:nth-child(1){
+  					width:590px;
+  					height:440px;
+  				}
+  				.year ul li:nth-child(1) img{
+  					width:590px;
+  					height:335PX;
+  				}
+  				.year ul li p{
+  					font-size:17px;
+  					line-height:25px;
+  				}
+  				.year ul li a{
+  					color:#000000;
+  					line-height: 50px;
+  				}
+  				.year ul li:hover{
+  					border:1px solid #C8CBCC;
+  				}
+  				.wenben{
+  					width:1000px;
+  					height:230px;
+  					margin:auto;
+  				}
+  				.wenben ul{
+  					float:left;
+  					height:230px;
+  					margin-right:50px;
+  				}
+  				.wenben ul li{
+  					width:200px;
+  					font-size:15px;
+  					line-height:25px;
+  				}
+  				.wenben ul li:hover{
+  					color:#527dba;
+  				}
+  				 .wenben ul li:nth-child(1){
+  				 	font-size:23px;
+  				 	line-height: 50px;
+  				 }
+  				 .wenben ul li:nth-of-type(5){
+  				 	width:200px;
+  				 	height:35px;
+  				 	border-bottom:1px solid #c8cbcc;
+  				 }
+  				 .wenben ul li:last-child{
+  				 	height:35px;
+  				 	font-size:15px;
+  				 	font-weight:800;
+  				 }
+  				 .tui{
+  				 	width:1200px;
+  				 	height:70px;
+  				 	margin:auto;
+  				 }
+  				 .tui p{
+  				 	font-size:30px;
+  				 	line-height:70px;
+  				 	font-weight:500;
+  				 }
+  				 .swiper-container .swiper-wrapper .swiper-slide ol{
+  				 	width:1200px;
+  				 	height:370px;
+  				 	margin:auto;
+  				 }
+  				 .swiper-container .swiper-wrapper .swiper-slide ol li{
+  				 	box-sizing: border-box;
+  				 	float:left;
+  				 	width:290px;
+  				 	height:370px; 
+  				 	margin-right:10px;
+  				 }
+  				  .swiper-container .swiper-wrapper .swiper-slide ol li:hover{
+  				  	border:1px solid #C8CBCC;
+  				  }
+  				 .swiper-container .swiper-wrapper .swiper-slide ol li img{
+  				 	width:290px;
+  				 	height:290px;
+  				 }
+  				 .swiper-container .swiper-wrapper .swiper-slide ol li p{
+  				 	font-size:10px;
+  				 	line-height:25px;
+  				 }
+  				 .swiper-container .swiper-wrapper .swiper-slide ol li span{
+  				 	line-height:60px;
+  				 }
+  				 .flood{
+  				 	height:100px;
+  				 	width:1350px;
+  				 	background:#000000;
+  				 	margin-top:30px;
+  				 }
+  				
+  				

@@ -1,0 +1,837 @@
+					* {
+						margin: 0;
+						padding: 0;
+					}
+					a{text-decoration: none;
+					   color:#FFFFFF;
+					}
+					
+					li {
+						list-style: none;
+					}
+					#guanggao {
+						width: 1350px;
+						height: 56px;
+						position: relative;
+					}
+					
+					.tu {
+						width: 1350px;
+						height: 56px;
+					}
+					
+					.tu img {
+						width: 100%;
+						height: 100%;
+					}
+					
+					#btn {
+						width: 40px;
+						height: 40px;
+						font-size: 40px;
+						position: absolute;
+						right: 5%;
+					}
+					.deng {
+						height:40px;
+						width:1350px;
+						background:#000000;
+					}
+					.deng ul {
+						margin-left:850px;
+					}
+					.deng ul li{
+						float:left;
+						padding-right:40px;
+						line-height:40px;
+						font-size:10px;
+						color:#fff;
+					}
+					.deng ul li a{
+						color:#FFFFFF;
+					}
+					.deng ul li span{
+						padding-left:7px;
+						font-size:10px;
+					}
+					
+					header {
+						width: 1350px;
+						height: 80px;
+						background: #000000;
+					}
+					
+					.caidan {
+						position: relative;
+						float: left;
+						width:1350px;
+						height: 40px;
+						box-sizing: border-box;
+					}
+					
+					.caidan img {
+						position:absolute;
+						top:-20px;
+						left:50px;
+						float: left;
+						padding-left: 60px;
+						padding-top: 15px;
+					}
+					
+					.caidan span {
+						display: inline-block;
+						overflow: hidden;
+						color: #FFFFFF;
+						font-size: 21px;
+						padding-left:30px;
+						line-height: 40px;
+					}
+					.caidan .one{
+						padding-left:200px;
+					}
+					.caidan .eight{
+						width:160px;
+						height:25px;
+						background:#FFFFFF;
+						margin-left:200px;	
+					}
+					.caidan .eight input{
+						width:160px;
+						height:25px;
+					}
+					
+					
+					.first {
+						width: 180px;
+						height: 30px;
+						background: #fff;
+						float: right;
+						margin-top: 35px;
+						margin-right: 55px;
+						line-height: 30px;
+						color: (136, 136, 136, 0.3);
+					}
+					
+					.hide1 {
+						
+						overflow: hidden;
+						width: 1350px;
+						height: 413px;
+						background: #000000;
+					}
+					
+					.hide1 ul {
+						float: left;
+						color: #FFFFFF;
+						position: relative;
+					}
+					
+					.hide1 ul {
+						width: 250px;
+						text-align: center;
+					}
+					
+					.hide1 ul li:first-child {
+						padding-top: 16px;
+						font-size: 22px;
+					}
+					
+					.hide1 ul li:nth-child(2) {
+						padding-top: 20px;
+					}
+					
+					.hide1 ul li {
+						font-size: 14px;
+						line-height: 20px;
+					}
+					
+					.hide1 ul li:last-child {
+						font-size: 15px;
+					}
+					
+					.hide1 ul li span {
+						border-bottom: 1px solid #F7F7F7;
+					}
+					
+					.hide1 ul .one {
+						padding-top: 60px;
+					}
+					
+					.hide1 ul .two {
+						padding-top: 135px;
+					}
+					
+					.hide1 ul .three {
+						padding-top: 135px;
+					}
+					
+					.hide1 ul .four {
+						padding-top: 200px;
+					}
+					
+					.hide1 ul .five {
+						padding-top: 135px;
+					}
+					
+					.hide2 {
+						width: 1350px;
+						height: 413px;
+						background: #000000;
+					}
+					
+					.hide2 ul {
+						float: left;
+						color: #fff;
+						width: 250px;
+						text-align: center;
+					}
+					
+					.hide2 ul li:first-child {
+						padding-top: 16px;
+						font-size: 22px;
+					}
+					
+					.hide2 ul li:nth-child(2) {
+						padding-top: 20px;
+					}
+					
+					.hide2 ul li {
+						font-size: 14px;
+						line-height: 20px;
+					}
+					
+					.hide2 ul li:last-child {
+						font-size: 15px;
+					}
+					
+					.hide2 ul li span {
+						border-bottom: 1px solid #F7F7F7;
+					}
+					
+					.hide2 ul .one {
+						padding-top: 60px;
+					}
+					
+					.hide2 ul .two {
+						padding-top: 135px;
+					}
+					
+					.hide2 ul .three {
+						padding-top: 135px;
+					}
+					
+					.hide2 ul .four {
+						padding-top: 180px;
+					}
+					
+					.hide2 ul .five {
+						padding-top: 175px;
+					}
+					
+					.hide3 {
+						width: 1350px;
+						height: 305px;
+						background: #000000;
+					}
+					
+					.hide3 ul {
+						float: left;
+						color: #fff;
+						position: relative;
+					}
+					
+					.hide3 ul {
+						width: 250px;
+						text-align: center;
+					}
+					
+					.hide3 ul li:first-child {
+						padding-top: 16px;
+						font-size: 22px;
+					}
+					
+					.hide3 ul li:nth-child(2) {
+						padding-top: 20px;
+					}
+					
+					.hide3 ul li {
+						font-size: 14px;
+						line-height: 20px;
+					}
+					
+					.hide3 ul li:last-child {
+						font-size: 15px;
+					}
+					
+					.hide3 ul li span {
+						border-bottom: 1px solid #F7F7F7;
+					}
+					
+					.hide3 ul .one {
+						padding-top: 100px;
+					}
+					
+					.hide3 ul .two {
+						padding-top: 60px;
+					}
+					
+					.hide3 ul .three {
+						padding-top: 60px;
+					}
+					
+					.hide3 ul .four {
+						padding-top: 60px;
+					}
+					
+					.hide4 {
+						width: 1350px;
+						height: 436px;
+						background: #000000;
+					}
+					
+					.hide4 ul {
+						float: left;
+						color: #F7F7F7;
+					}
+					
+					.hide4 ul {
+						width: 170px;
+						text-align: left;
+						padding-left: 50px;
+					}
+					
+					.hide4 ul li:first-child {
+						padding-top: 16px;
+						font-size: 22px;
+					}
+					
+					.hide4 ul li:nth-child(2) {
+						padding-top: 20px;
+					}
+					
+					.hide4 ul li {
+						font-size: 14px;
+						line-height: 20px;
+					}
+					
+					.hide4 ul li:last-child {
+						font-size: 15px;
+					}
+					
+					.hide4 ul li span {
+						border-bottom: 1px solid #F7F7F7;
+						width: 170px;
+						display: inline-block;
+					}
+					
+					.hide4 ul li span img {
+						width: 25px;
+						height: 20px;
+						padding-right: 7px;
+					}
+					
+					.hide4 ul li span p {
+						padding-bottom: 10px;
+						display: inline-block;
+					}
+					
+					.hide4 ul .one {
+						padding-top: 70px;
+					}
+					
+					.hide4 ul .two {
+						padding-top: 110px;
+					}
+					
+					.hide4 ul .three {
+						padding-top: 90px;
+					}
+					
+					.hide4 ul .four {
+						padding-top: 110px;
+					}
+					
+					.hide4 ul .five {
+						padding-top: 150px;
+					}
+					
+					.hide4 .six {
+						padding-left: 10px;
+						height: 260px;
+						border-left: 1px solid #FFFFFF;
+						margin-left: 40px;
+					}
+					
+					.hide5 {
+						width: 1350px;
+						height: 472px;
+						background: #000000;
+					}
+					
+					.hide5 ul {
+						float: left;
+						color: #F7F7F7;
+					}
+					
+					.hide5 ul {
+						width: 170px;
+						text-align: left;
+						padding-left: 50px;
+					}
+					
+					.hide5 ul li:first-child {
+						padding-top: 16px;
+						font-size: 22px;
+					}
+					
+					.hide5 ul li:nth-child(2) {
+						padding-top: 20px;
+					}
+					
+					.hide5 ul li {
+						font-size: 14px;
+						line-height: 20px;
+					}
+					
+					.hide5 ul li:last-child {
+						font-size: 15px;
+					}
+					
+					.hide5 ul li span {
+						border-bottom: 1px solid #F7F7F7;
+						display: inline-block;
+						font-size: 14px;
+					}
+					
+					.hide5 ul .one {
+						padding-top: 70px;
+					}
+					
+					.hide5 ul .two {
+						padding-top: 130px;
+					}
+					
+					.hide5 ul .three {
+						padding-top: 130px;
+					}
+					
+					.hide5 ul .four {
+						padding-top: 170px;
+					}
+					
+					.hide5 ul .five {
+						padding-top: 180px;
+					}
+					
+					.hide5 .six {
+						padding-left: 10px;
+						height: 260px;
+						border-left: 1px solid #FFFFFF;
+						margin-left: 40px;
+					}
+					
+					.one .hide1 {
+						display: none;
+					}
+					
+					.one:hover .hide1 {
+						
+						display: block;
+					}
+					
+					.two .hide2 {
+						display: none;
+					}
+					
+					.two:hover .hide2 {
+						display: block;
+					}
+					
+					.three .hide3 {
+						display: none;
+					}
+					
+					.three:hover .hide3 {
+						display: block;
+					}
+					
+					.four .hide4 {
+						display: none;
+					}
+					
+					.four:hover .hide4 {
+						display: block;
+					}
+					
+					.five .hide5 {
+						display: none;
+					}
+					
+					.five:hover .hide5 {
+						display: block;
+						overflow: hidden;
+						width:1350px;
+						height:506px;
+					}
+					.qingren{
+						background:url(../img/阿迪达斯官方商城_files/qingren.jpg)no-repeat center;
+					 width:1350px;
+					 height:505px;
+					 background-size:100% 100%;
+					
+					}
+					.qingren span{
+					  position:absolute;
+					}
+					.qingren span p{
+						display: block;
+						margin-left:1030px;
+						position:relative;
+						text-decoration: none;
+						font-size:15px;
+						color:#000000;
+					    margin-top:340px;
+					    width:160px;
+						height:50px;
+						line-height: 50px;
+						text-align: center;
+						background:#FFFFFF;
+					}
+					.qingren span p a{
+						font-size:15px;
+						color:#000000;
+					}
+					
+					video{
+          width:1350px;
+
+          height:508px;
+          z-index: -9999;
+          /*灰色调*/
+          /*-webkit-filter:grayscale(100%)*/
+
+      }
+              .videohou{
+                    	overflow: hidden;
+                    	margin-top:24px;
+                    	background:url(../img/阿迪达斯官方商城_files/yi.jpg)no-repeat center;
+                    	width:1350px;
+                    	height:520px;
+                    	background-size:100% 100%;
+                    }
+                    .videohou span{
+                    	display:block;
+                    	width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						margin-top:350px;
+						margin-left:600px;
+						text-align: center;
+						line-height:45px;
+                    	
+                    }
+					.beijing {
+						overflow: hidden;
+						height: 470px;
+						width: 1350px;
+						border: 25px solid #FFFFFF;
+						box-sizing: border-box;
+					}
+					
+					.beijing span:nth-child(1) {
+						display: inline-block;
+						width: 640px;
+						height: 470px;
+						background:url(../img/阿迪达斯官方商城_files/yi1.jpg)no-repeat center;
+					}
+					
+					.beijing span:nth-child(2) {
+						display: inline-block;
+						float: right;
+						width: 638px;
+						height: 470px;
+						background: url(../img/阿迪达斯官方商城_files/924-480-originals-vday.jpg)no-repeat center;
+						background-size:100% 100%;
+					}
+					
+					.beijing span:nth-child(1) p {
+						width: 165px;
+						height: 45px;
+						background: #FFFFFF;
+						color: #000000;
+						text-align: center;
+						line-height: 45px;
+						margin-top: 350px;
+						margin-left: 250px;
+						font-size: 20px;
+					}
+					
+					.beijing span:nth-child(2) p {
+						width: 165px;
+						height: 45px;
+						background: #FFFFFF;
+						color: #000000;
+						font-size: 20px;
+						text-align: center;
+						line-height: 45px;
+						margin-top: 350px;
+						margin-left: 235px;
+					}
+					.boost{
+						width:1350px;
+						height:506px;
+						background:url(../img/阿迪达斯官方商城_files/1920-720-ultraboostvday.jpg)no-repeat center;
+					    background-size:100% 100%;
+					}
+					.boost span{
+						display: inline-block;
+						width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						margin-top:344px;
+						margin-left:110px;
+						line-height:45px;
+						text-align:center;
+						font-size:20px;
+					}
+					.boost1 {
+						overflow: hidden;
+						width:1350px;
+						height:525px;
+						border:25px solid #F7F7F7;
+						box-sizing: border-box;
+					}
+					.boost1 span{
+						display:inline-block;
+					}
+					.boost1 span:first-child{
+						width:640px;
+						height:480px;
+						background:url(../img/阿迪达斯官方商城_files/924-480-ultraboost-OGOG.jpg)no-repeat center;
+					}
+					.boost1 span:last-child{
+						width:640px;
+						height:480px;
+						background:url(../img/阿迪达斯官方商城_files/924-480-bestseller.jpg)no-repeat center;
+						float:right;
+					}
+					.boost1 span:first-child p{
+						width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						line-height:45px;
+						text-align: center;
+						font-size:20px;
+						margin-top:400px;
+						margin-left:240px;
+					}
+					.boost1 span:last-child p{
+						width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						line-height:45px;
+						text-align: center;
+						font-size:20px;
+						margin-top:400px;
+						margin-left:240px;
+					}
+					.luhan{
+						width:1350px;
+						height:507px;
+						background:url(../img/阿迪达斯官方商城_files/yi2.jpg)no-repeat center;
+						background-size: 100% 100%;
+					}
+					.luhan p{
+						width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						line-height:45px;
+						text-align: center;
+						font-size:20px;
+						margin-left:1030px;
+						margin-top:280px;
+						position:absolute;
+					}
+					.luhan p:first-child{
+						margin-top:350px;
+					}
+					.adidasneo{
+						margin-top:25px;
+						width:1350px;
+						height:507px;
+						background:url(../img/阿迪达斯官方商城_files/1920-720-adidasneo-Feb.jpg)no-repeat;
+					}
+					.adidasneo p{
+						width:165px;
+						height:45px;
+						background:#FFFFFF;
+						color:#000000;
+						line-height:45px;
+						text-align: center;
+						font-size:20px;
+						margin-left:500px;
+						position:absolute;
+					}
+					.adidasneo p:nth-child(1){
+						margin-top:300px;
+					}
+					.adidasneo p:last-child{
+						margin-top:350px;
+					}
+					.shot{
+						width:1350px;
+						height:350px;
+					}
+					.shot span{
+						display: inline-block;
+						width:1350px;
+						height:95px;
+						line-height: 95px;
+						text-align:center;
+						font-size:25px;
+						color:#000000;
+						margin-top:35px;
+					}
+					.shot ul{
+						width:1200px;
+						height:222px;
+						margin:0 auto;
+					}
+					.shot ul li{
+						position:relative;
+						width:300px;
+						height:222px;
+						float:left;
+						box-sizing: border-box;
+					}
+					.shot ul li:hover{
+						border:1px solid #333333;
+						
+					}
+					.shot ul li img{
+						display: block;
+						padding-top:35px;
+					}
+					.shot ul li p{
+						padding-left:120px;
+						padding-top:30px;	
+					}
+					.photo{
+						margin-top:100px;
+						width:1035px;
+						height:520px;
+						margin:0 auto;
+					}
+					.photo img{
+						display: block;
+						width:255px;
+						height:255px;
+						float:left;
+					}
+					.wenzi{
+						width:1350px;
+						height:275px;
+					}
+					.wenzi p:nth-child(1){
+						text-align: center;
+						font-size:35px;
+						padding-top:60px;
+					}
+					.wenzi p:nth-child(2){
+						width:160px;
+						height:50px;
+						font-size:20px;
+						text-align: center;
+						line-height:50px;
+						margin:auto;
+						background:#000000;
+						color:#F7F7F7;
+						margin-top:10px;
+					}
+					.wenzi p:nth-child(3){
+						font-size:20px;
+						padding-left:75px;
+						padding-top:60px;
+					}
+						.swiper-container {
+							width: 1200px;
+							height: 390px;
+							margin: auto;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul {
+							display: flex;
+							justify-content: space-between;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul li {
+							float: left;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul li:hover {
+							border: 1px solid #000000;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul li img {
+							width: 290px;
+							height: 290px;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul li p:nth-child(1) {
+							text-align: left;
+							line-height: 50px;
+						}
+						
+						.swiper-container .swiper-wrapper .swiper-slide ul li p:nth-child(2) {
+							text-align: left;
+							line-height: 50px;
+						}
+						
+						.benzhou {
+							height: 100px;
+							width: 1350px;
+							font-size:25px;
+							padding-left:45px;
+							box-sizing: border-box;
+						}
+						.flood{
+							width:1350px;
+							height:100px;
+							background:#000000; 
+						}
+						.flood span{
+							float:left;
+							color:#FFFFFF;
+							display: inline-block;
+							padding-left:80px;
+							line-height: 100px;
+						}
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
